@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pressnell Auto Detailing | Nashville, TN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:      #0e0e12;
+      --white:      #ffffff;
+      --off-white:  #f7f7f5;
+      --gray:       #6b6b6b;
+      --light-gray: #e8e8e8;
+      --red:        #C8102E;
+      --red-dark:   #a00c24;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      color: var(--black);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 56px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+
+    .nav-logo {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--red); }
+
+    .nav-phone {
+      color: var(--gray) !important;
+    }
+
+    .nav-cta {
+      background: var(--black);
+      color: white !important;
+      padding: 10px 24px !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--red) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh;
+      min-height: 720px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      background: var(--black);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=2000&q=90') center/cover no-repeat;
+      opacity: 0.65;
+    }
+
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(14,14,18,0.97) 0%,
+        rgba(14,14,18,0.45) 45%,
+        rgba(14,14,18,0.05) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 0 72px 88px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .hero-text { max-width: 680px; }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(60px, 9vw, 120px);
+      font-weight: 800;
+      line-height: 0.94;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .btn-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      color: var(--black);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-light:hover { background: var(--red); color: white; }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.6);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-ghost:hover { color: white; border-color: white; }
+
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 32px;
+    }
+
+    .hero-stats-row {
+      display: flex;
+      gap: 48px;
+    }
+
+    .hero-stat { text-align: right; }
+
+    .hero-stat-num {
+      font-size: 38px;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+      letter-spacing: -0.025em;
+    }
+
+    .hero-stat-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 6px;
+    }
+
+    /* ── BAND ── */
+    .band {
+      background: var(--red);
+      padding: 17px 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .band-text {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: white;
+    }
+
+    .band-link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .band-link:hover { color: white; }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 112px 72px;
+      background: var(--white);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(34px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.04;
+      color: var(--black);
+    }
+
+    .section-cta {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 2px;
+      white-space: nowrap;
+      align-self: flex-end;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .section-cta:hover { color: var(--red); border-color: var(--red); }
+
+    /* Service grid — Porsche model-card style */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--light-gray);
+    }
+
+    .service-card {
+      background: var(--white);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s;
+    }
+
+    .service-card:hover { box-shadow: 0 0 0 2px var(--black); }
+
+    .service-img {
+      width: 100%;
+      height: 268px;
+      background: linear-gradient(160deg, #1c1c22 0%, #0e0e12 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .service-img svg {
+      width: 52px;
+      height: 52px;
+      fill: rgba(255,255,255,0.07);
+    }
+
+    .service-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .service-card:hover .service-img img { transform: scale(1.04); }
+
+    .service-body {
+      padding: 26px 28px 32px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 8px;
+    }
+
+    .service-body h3 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+
+    .service-price {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray);
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .service-link svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s;
+    }
+
+    .service-link:hover { color: var(--red); }
+    .service-card:hover .service-link svg { transform: translateX(4px); }
+
+    /* ── FEATURE SPLIT ── */
+    .feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .feature-img {
+      min-height: 560px;
+      background: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1400&q=85') center/cover no-repeat;
+    }
+
+    .feature-panel {
+      background: var(--black);
+      padding: 100px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .feature-panel .section-eyebrow { color: rgba(255,255,255,0.35); margin-bottom: 18px; }
+
+    .feature-panel h2 {
+      font-size: clamp(40px, 4vw, 58px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.04;
+      color: white;
+      margin-bottom: 24px;
+    }
+
+    .feature-panel p {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.75;
+      max-width: 400px;
+      margin-bottom: 40px;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .feature-list li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .btn-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--red);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      text-decoration: none;
+      align-self: flex-start;
+      transition: background 0.2s;
+    }
+
+    .btn-red:hover { background: var(--red-dark); }
+
+    /* ── GALLERY ── */
+    .gallery {
+      padding: 112px 72px;
+      background: var(--off-white);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 310px 310px;
+      gap: 4px;
+      margin-top: 56px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+      background: var(--black);
+    }
+
+    .gallery-item:first-child { grid-row: span 2; }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    .gallery-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #1c1c22 0%, #0e0e12 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-placeholder span {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
+    }
+
+    .gallery-badges {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+    }
+
+    .badge-light { background: rgba(255,255,255,0.92); color: var(--black); }
+    .badge-red   { background: var(--red); color: white; }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 112px 72px;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 96px;
+      align-items: center;
+    }
+
+    .about-text .section-eyebrow { margin-bottom: 18px; }
+
+    .about-text h2 {
+      font-size: clamp(38px, 4vw, 54px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.06;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--gray);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .about-numbers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--light-gray);
+      margin-top: 48px;
+    }
+
+    .about-number {
+      background: var(--white);
+      padding: 30px 28px;
+    }
+
+    .about-number-val {
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .about-number-val span { color: var(--red); }
+
+    .about-number-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 8px;
+    }
+
+    .about-visual {
+      height: 580px;
+      background: linear-gradient(160deg, #1c1c22 0%, #0e0e12 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .about-visual span {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-info {
+      background: var(--black);
+      padding: 112px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-info .section-eyebrow { color: rgba(255,255,255,0.28); margin-bottom: 18px; }
+
+    .contact-info h2 {
+      font-size: clamp(40px, 4vw, 60px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.04;
+      color: white;
+      margin-bottom: 24px;
+    }
+
+    .contact-info > p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.75;
+      max-width: 380px;
+      margin-bottom: 56px;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .contact-detail-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 4px;
+    }
+
+    .contact-detail-value a,
+    .contact-detail-value span {
+      font-size: 17px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-detail-value a:hover { color: var(--red); }
+
+    .contact-social-row {
+      display: flex;
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .social-text-link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .social-text-link:hover { color: white; }
+
+    .contact-form-wrap {
+      background: var(--off-white);
+      padding: 112px 72px;
+    }
+
+    .contact-form-wrap h3 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      margin-bottom: 40px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #d0d0d0;
+      padding: 10px 0 12px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 0;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #bbb; }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--black); }
+
+    .form-group select option { background: white; color: var(--black); }
+
+    .form-group textarea { resize: none; min-height: 80px; }
+
+    .form-submit {
+      width: 100%;
+      background: var(--black);
+      color: white;
+      border: none;
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 18px;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+
+    .form-submit:hover { background: var(--red); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #09090d;
+      padding: 44px 72px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .footer-logo {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: white;
+    }
+
+    .footer-logo span { color: var(--red); }
+
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(255,255,255,0.2);
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-right a {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+
+    .footer-right a:hover { color: white; }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+
+      .hero-content { padding: 0 28px 72px; flex-direction: column; align-items: flex-start; gap: 40px; }
+      .hero-stats { align-items: flex-start; }
+      .hero-stats-row { gap: 28px; }
+      .hero-stat { text-align: left; }
+
+      .band { padding: 14px 24px; flex-direction: column; gap: 8px; text-align: center; }
+
+      .services { padding: 72px 24px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .feature { grid-template-columns: 1fr; }
+      .feature-img { min-height: 320px; }
+      .feature-panel { padding: 64px 28px; }
+
+      .gallery { padding: 72px 24px; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item:first-child { grid-row: auto; height: 240px; }
+      .gallery-item { height: 200px; }
+
+      .about { padding: 72px 24px; grid-template-columns: 1fr; gap: 48px; }
+      .about-visual { height: 360px; order: -1; }
+
+      .contact { grid-template-columns: 1fr; }
+      .contact-info { padding: 72px 24px; }
+      .contact-form-wrap { padding: 64px 24px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+
+      footer {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        text-align: center;
+        padding: 36px 24px;
+      }
+      .footer-right { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Pressnell <span>Auto</span> Detailing</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="tel:6155912953" class="nav-phone">615-591-2953</a></li>
+      <li><a href="#contact" class="nav-cta">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-eyebrow">Nashville, TN &nbsp;·&nbsp; Mobile Auto Detailing</div>
+        <h1>Precision.<br>Passion.<br>Detail.</h1>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-light">Get a Free Estimate</a>
+          <a href="#services" class="btn-ghost">View Services &rarr;</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stats-row">
+          <div class="hero-stat">
+            <div class="hero-stat-num">8+</div>
+            <div class="hero-stat-label">Years Experience</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">5&#9733;</div>
+            <div class="hero-stat-label">Customer Rated</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label">Mobile Service</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND -->
+  <div class="band">
+    <span class="band-text">Mobile Service &nbsp;&middot;&nbsp; Free Estimates &nbsp;&middot;&nbsp; Nashville, TN</span>
+    <a href="tel:6155912953" class="band-link">Call or Text: 615-591-2953 &rarr;</a>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-eyebrow">What We Offer</div>
+        <div class="section-title">Our Services</div>
+      </div>
+      <a href="#contact" class="section-cta">Book a Service &rarr;</a>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-img">
+          <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99z"/></svg>
+        </div>
+        <div class="service-body">
+          <div class="service-tag">Most Popular</div>
+          <h3>Full Detail</h3>
+          <div class="service-price">Exterior from $144.99 &nbsp;&middot;&nbsp; Interior from $154.99</div>
+          <a href="#contact" class="service-link">
+            Book Now
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-img">
+          <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 19.69L5.71 21 7 19c.97.97 3.14 1 4 0l6-6.07C20 9 17 8 17 8z"/></svg>
+        </div>
+        <div class="service-body">
+          <div class="service-tag">Recurring</div>
+          <h3>Hand Wash &amp; Subscription</h3>
+          <div class="service-price">Hand Wash from $64.99 &nbsp;&middot;&nbsp; Add Interior from $24.99</div>
+          <a href="#contact" class="service-link">
+            Book Now
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-img">
+          <svg viewBox="0 0 24 24"><path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5z"/></svg>
+        </div>
+        <div class="service-body">
+          <div class="service-tag">Deep Clean</div>
+          <h3>Interior Restoration</h3>
+          <div class="service-price">Deep Interior from $249.99 &nbsp;&middot;&nbsp; +Exterior from $64.99</div>
+          <a href="#contact" class="service-link">
+            Book Now
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-img">
+          <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm-1-11h2v6h-2zm0 8h2v2h-2z"/></svg>
+        </div>
+        <div class="service-body">
+          <div class="service-tag">Premium Protection</div>
+          <h3>Ceramic Coating &amp; Paint Correction</h3>
+          <div class="service-price">Paint Correction from $799.99 &nbsp;&middot;&nbsp; Ceramic from $899.99</div>
+          <a href="#contact" class="service-link">
+            Book Now
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURE SPLIT -->
+  <section class="feature">
+    <div class="feature-img"></div>
+    <div class="feature-panel reveal">
+      <div class="section-eyebrow">Why Choose Us</div>
+      <h2>We Come<br>To You.</h2>
+      <p>Pressnell Auto Detailing is fully mobile — professional-grade equipment, premium products, and 8+ years of expertise delivered directly to your driveway.</p>
+      <ul class="feature-list">
+        <li>8+ years of professional experience</li>
+        <li>Everyday vehicles to rare exotics</li>
+        <li>No drop-off &mdash; we work at your location</li>
+        <li>Free estimates, always</li>
+        <li>5-star rated service</li>
+      </ul>
+      <a href="#contact" class="btn-red">Get a Free Estimate</a>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-eyebrow">Our Work</div>
+        <div class="section-title">Before &amp; After</div>
+      </div>
+      <a href="https://www.instagram.com/pressnell_detail/" target="_blank" class="section-cta">View on Instagram &rarr;</a>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <div class="gallery-placeholder"><span>Add best before / after photo here</span></div>
+        <div class="gallery-badges">
+          <span class="badge badge-light">Before</span>
+          <span class="badge badge-red">After</span>
+        </div>
+      </div>
+      <div class="gallery-item reveal"><div class="gallery-placeholder"><span>Photo</span></div></div>
+      <div class="gallery-item reveal"><div class="gallery-placeholder"><span>Photo</span></div></div>
+      <div class="gallery-item reveal"><div class="gallery-placeholder"><span>Photo</span></div></div>
+      <div class="gallery-item reveal"><div class="gallery-placeholder"><span>Photo</span></div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-text reveal">
+      <div class="section-eyebrow">Our Story</div>
+      <h2>Built on Passion,<br>Driven by Detail.</h2>
+      <p>Pressnell Auto Detailing was founded on a simple belief — every vehicle deserves to look its absolute best. With over 8 years of hands-on experience, we've worked on everything from daily drivers to rare exotics.</p>
+      <p>Fully mobile means we bring the complete detail experience to your driveway. No drop-off. No waiting rooms. Just results you'll be proud of.</p>
+      <div class="about-numbers">
+        <div class="about-number">
+          <div class="about-number-val">8<span>+</span></div>
+          <div class="about-number-label">Years Experience</div>
+        </div>
+        <div class="about-number">
+          <div class="about-number-val">5<span>&#9733;</span></div>
+          <div class="about-number-label">Customer Rating</div>
+        </div>
+        <div class="about-number">
+          <div class="about-number-val">100<span>%</span></div>
+          <div class="about-number-label">Mobile Service</div>
+        </div>
+        <div class="about-number">
+          <div class="about-number-val">$0</div>
+          <div class="about-number-label">Estimate Cost</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual reveal">
+      <span>Team / shop photo</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-info reveal">
+      <div class="section-eyebrow">Get In Touch</div>
+      <h2>Let's Bring<br>Your Car<br>Back to Life.</h2>
+      <p>Ready for a free estimate? Fill out the form or reach out directly — we'll get back to you fast.</p>
+      <div class="contact-details">
+        <div>
+          <div class="contact-detail-label">Phone / Text</div>
+          <div class="contact-detail-value"><a href="tel:6155912953">615-591-2953</a></div>
+        </div>
+        <div>
+          <div class="contact-detail-label">Email</div>
+          <div class="contact-detail-value"><a href="mailto:Pressnellautomotive@gmail.com">Pressnellautomotive@gmail.com</a></div>
+        </div>
+        <div>
+          <div class="contact-detail-label">Location</div>
+          <div class="contact-detail-value"><span>Nashville, TN &mdash; We Come To You</span></div>
+        </div>
+      </div>
+      <div class="contact-social-row">
+        <a href="https://www.instagram.com/pressnell_detail/" target="_blank" class="social-text-link">Instagram</a>
+        <a href="https://www.facebook.com/pressnellautomotive/" target="_blank" class="social-text-link">Facebook</a>
+      </div>
+    </div>
+
+    <div class="contact-form-wrap reveal">
+      <h3>Free Estimate Request</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="John" />
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Smith" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" placeholder="(615) 000-0000" />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com" />
+      </div>
+      <div class="form-group">
+        <label>Service</label>
+        <select>
+          <option value="" disabled selected>Select a service</option>
+          <option>Full Interior &amp; Exterior Detail</option>
+          <option>Hand Wash &amp; Subscription</option>
+          <option>Deep Interior Cleaning</option>
+          <option>Ceramic Coating &amp; Paint Correction</option>
+          <option>Not sure — I need a recommendation</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Details</label>
+        <textarea placeholder="Tell us about your vehicle..."></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('Thanks! We\'ll be in touch shortly.\nOr call/text us at 615-591-2953.')">
+        Submit Request
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Pressnell <span>Auto</span> Detailing</div>
+    <p class="footer-copy">&copy; 2025 Pressnell Auto Detailing &nbsp;&middot;&nbsp; Nashville, TN</p>
+    <div class="footer-right">
+      <a href="tel:6155912953">615-591-2953</a>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
