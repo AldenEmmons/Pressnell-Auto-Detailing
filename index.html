@@ -39,7 +39,10 @@
       background: rgba(255,255,255,0.96);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(0,0,0,0.07);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+    .nav-hidden { transform: translateY(-100%); }
 
     .nav-logo {
       text-decoration: none;
@@ -1199,7 +1202,7 @@
     mm.add('(prefers-reduced-motion: no-preference)', () => {
 
         /* ── NAV ── */
-        gsap.from('nav', { opacity: 0, y: -20, duration: 0.9, ease: POWER, delay: 0.1 });
+        gsap.from('nav', { opacity: 0, y: -20, duration: 0.9, ease: POWER, delay: 0.1, clearProps: 'transform,opacity' });
 
         /* ── HERO — staggered text emerge on load ── */
         const heroLines = document.querySelectorAll('.hero .line');
@@ -1331,6 +1334,19 @@
 
       /* Reduced-motion: no animations — elements render at natural state */
     });
+
+    /* ── NAV HIDE / SHOW ON SCROLL ── */
+    const navEl = document.querySelector('nav');
+    let lastScrollY = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y > lastScrollY && y > 80) {
+        navEl.classList.add('nav-hidden');
+      } else {
+        navEl.classList.remove('nav-hidden');
+      }
+      lastScrollY = y;
+    }, { passive: true });
   })();
 
   </script>
