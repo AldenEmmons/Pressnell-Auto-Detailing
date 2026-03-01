@@ -403,9 +403,11 @@
 
     .feature-img video {
       position: absolute;
-      inset: 0;
+      left: 0;
+      right: 0;
+      top: -15%;
       width: 100%;
-      height: 100%;
+      height: 130%;
       object-fit: cover;
     }
 
@@ -827,16 +829,16 @@
 
     .footer-right a:hover { color: white; }
 
-    /* ── REVEAL ANIMATION ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
+    /* ── LINE-MASK ANIMATION BASE ── */
+    .line-wrap {
+      display: block;
+      overflow: hidden;
+      padding-bottom: 0.05em;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .line {
+      display: block;
+      will-change: transform;
     }
 
     /* ── MOBILE ── */
@@ -905,7 +907,11 @@
     <div class="hero-content">
       <div class="hero-text">
         <div class="hero-eyebrow">Nashville, TN &nbsp;·&nbsp; Mobile Auto Detailing</div>
-        <h1>Precision.<br>Passion.<br>Detail.</h1>
+        <h1>
+          <span class="line-wrap"><span class="line">Precision.</span></span>
+          <span class="line-wrap"><span class="line">Passion.</span></span>
+          <span class="line-wrap"><span class="line">Detail.</span></span>
+        </h1>
         <div class="hero-actions">
           <a href="#contact" class="btn-light">Get a Free Estimate</a>
           <a href="#services" class="btn-ghost">View Services &rarr;</a>
@@ -1162,11 +1168,165 @@
     </div>
   </footer>
 
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  (function () {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const EXPO  = 'expo.out';
+    const POWER = 'power3.out';
+
+    /* Wrap <br>-delimited lines in overflow:hidden clip containers */
+    function wrapLines(el) {
+      const parts = el.innerHTML.split(/<br\s*\/?>/i);
+      el.innerHTML = parts
+        .map(p => `<span class="line-wrap"><span class="line">${p.trim()}</span></span>`)
+        .join('');
+      return Array.from(el.querySelectorAll('.line'));
+    }
+
+    gsap.matchMedia().add({
+
+      /* ── Full animations ── */
+      '(prefers-reduced-motion: no-preference)': () => {
+
+        /* ── NAV ── */
+        gsap.from('nav', { opacity: 0, y: -20, duration: 0.9, ease: POWER, delay: 0.1 });
+
+        /* ── HERO — staggered text emerge on load ── */
+        const heroLines = document.querySelectorAll('.hero .line');
+        gsap.timeline({ defaults: { ease: EXPO } })
+          .from('.hero-eyebrow', { opacity: 0, y: 18, duration: 0.9, ease: POWER }, 0.25)
+          .from(heroLines,       { y: '105%', duration: 1.2, stagger: 0.12 }, 0.42)
+          .from('.hero-actions', { opacity: 0, y: 22, duration: 0.85, ease: POWER }, 1.05)
+          .from('.hero-stat',    { opacity: 0, y: 24, duration: 0.85, ease: POWER, stagger: 0.1 }, 1.1);
+
+        /* ── BAND — clip-path wipe left → right ── */
+        gsap.from('.band', {
+          clipPath: 'inset(0 100% 0 0)',
+          duration: 1.1, ease: EXPO,
+          scrollTrigger: { trigger: '.band', start: 'top 90%' }
+        });
+
+        /* ── SERVICES HEADER ── */
+        const svcHeader = document.querySelector('.services .section-header');
+        gsap.from(svcHeader.querySelector('.section-eyebrow'), {
+          opacity: 0, y: 16, duration: 0.75, ease: POWER,
+          scrollTrigger: { trigger: svcHeader, start: 'top 82%' }
+        });
+        gsap.from(svcHeader.querySelector('.section-title'), {
+          opacity: 0, y: 32, duration: 1.0, ease: EXPO,
+          scrollTrigger: { trigger: svcHeader, start: 'top 82%' }
+        });
+        gsap.from(svcHeader.querySelector('.section-cta'), {
+          opacity: 0, x: 20, duration: 0.75, ease: POWER,
+          scrollTrigger: { trigger: svcHeader, start: 'top 82%' }
+        });
+
+        /* ── SERVICE CARDS — staggered clip wipe from bottom ── */
+        gsap.from('.service-card', {
+          clipPath: 'inset(0 0 100% 0)',
+          duration: 1.05, ease: EXPO, stagger: 0.1,
+          scrollTrigger: { trigger: '.services-grid', start: 'top 82%' }
+        });
+
+        /* ── FEATURE — video parallax + panel text stagger ── */
+        gsap.fromTo('.feature-img video',
+          { y: -30 },
+          { y: 30, ease: 'none',
+            scrollTrigger: { trigger: '.feature', start: 'top bottom', end: 'bottom top', scrub: 1.5 } }
+        );
+
+        const featureLines = wrapLines(document.querySelector('.feature-panel h2'));
+        gsap.timeline({ defaults: { ease: POWER }, scrollTrigger: { trigger: '.feature-panel', start: 'top 75%' } })
+          .from('.feature-panel .section-eyebrow', { opacity: 0, y: 16, duration: 0.7 })
+          .from(featureLines,                       { y: '105%', duration: 1.0, ease: EXPO, stagger: 0.1 }, 0.15)
+          .from('.feature-panel p',                 { opacity: 0, y: 24, duration: 0.8 }, 0.55)
+          .from('.feature-list li',                 { opacity: 0, y: 18, duration: 0.65, stagger: 0.08 }, 0.7)
+          .from('.feature-panel .btn-red',          { opacity: 0, y: 18, duration: 0.7 }, 1.1);
+
+        /* ── GALLERY HEADER + CLIP WIPES ── */
+        const galHeader = document.querySelector('.gallery .section-header');
+        gsap.from(galHeader.querySelector('.section-eyebrow'), {
+          opacity: 0, y: 16, duration: 0.75, ease: POWER,
+          scrollTrigger: { trigger: galHeader, start: 'top 82%' }
+        });
+        gsap.from(galHeader.querySelector('.section-title'), {
+          opacity: 0, y: 32, duration: 1.0, ease: EXPO,
+          scrollTrigger: { trigger: galHeader, start: 'top 82%' }
+        });
+        gsap.from(galHeader.querySelector('.section-cta'), {
+          opacity: 0, x: 20, duration: 0.75, ease: POWER,
+          scrollTrigger: { trigger: galHeader, start: 'top 82%' }
+        });
+
+        gsap.from('.gallery-item', {
+          clipPath: 'inset(0 0 100% 0)',
+          duration: 1.1, ease: EXPO,
+          stagger: { amount: 0.55, from: 'start' },
+          scrollTrigger: { trigger: '.gallery-grid', start: 'top 82%' }
+        });
+
+        /* ── ABOUT — text reveal + visual clip + stat count-up ── */
+        const aboutLines = wrapLines(document.querySelector('.about-text h2'));
+        gsap.timeline({ defaults: { ease: POWER }, scrollTrigger: { trigger: '.about-text', start: 'top 78%' } })
+          .from('.about-text .section-eyebrow', { opacity: 0, y: 16, duration: 0.7 })
+          .from(aboutLines,                     { y: '105%', duration: 1.0, ease: EXPO, stagger: 0.1 }, 0.12)
+          .from('.about-text > p',              { opacity: 0, y: 24, duration: 0.8, stagger: 0.12 }, 0.55)
+          .from('.about-numbers',               { opacity: 0, y: 32, duration: 0.9 }, 0.9);
+
+        gsap.from('.about-visual', {
+          clipPath: 'inset(100% 0 0 0)',
+          duration: 1.3, ease: EXPO,
+          scrollTrigger: { trigger: '.about-visual', start: 'top 82%' }
+        });
+
+        /* Stat count-up */
+        document.querySelectorAll('.about-number-val').forEach(valEl => {
+          const suffixSpan = valEl.querySelector('span');
+          const suffixHTML = suffixSpan ? suffixSpan.outerHTML : '';
+          const fullText   = valEl.textContent;
+          const prefix     = fullText.startsWith('$') ? '$' : '';
+          const num        = parseInt(fullText.replace(/[^0-9]/g, ''), 10);
+          if (!num) return;
+          const proxy = { val: 0 };
+          ScrollTrigger.create({
+            trigger: '.about-numbers', start: 'top 80%', once: true,
+            onEnter() {
+              gsap.to(proxy, {
+                val: num, duration: 1.8, ease: POWER,
+                onUpdate() { valEl.innerHTML = prefix + Math.round(proxy.val) + suffixHTML; }
+              });
+            }
+          });
+        });
+
+        /* ── CONTACT ── */
+        const contactLines = wrapLines(document.querySelector('.contact-info h2'));
+        gsap.timeline({ defaults: { ease: POWER }, scrollTrigger: { trigger: '.contact', start: 'top 78%' } })
+          .from('.contact-info .section-eyebrow', { opacity: 0, y: 16, duration: 0.7 })
+          .from(contactLines,                     { y: '105%', duration: 1.0, ease: EXPO, stagger: 0.1 }, 0.12)
+          .from('.contact-info > p',              { opacity: 0, y: 24, duration: 0.8 }, 0.6)
+          .from('.contact-details > div',         { opacity: 0, y: 20, duration: 0.7, stagger: 0.1 }, 0.8)
+          .from('.contact-social-row',            { opacity: 0, y: 16, duration: 0.65 }, 1.2);
+
+        gsap.timeline({ defaults: { ease: POWER }, scrollTrigger: { trigger: '.contact-form-wrap', start: 'top 82%' } })
+          .from('.contact-form-wrap h3', { opacity: 0, y: 24, duration: 0.85, ease: EXPO })
+          .from('.form-group',           { opacity: 0, y: 22, duration: 0.7, stagger: 0.08 }, 0.25)
+          .from('.form-submit',          { opacity: 0, y: 18, duration: 0.7 }, 0.85);
+
+        /* ── FOOTER ── */
+        gsap.from('footer > *', {
+          opacity: 0, y: 16, duration: 0.8, ease: POWER, stagger: 0.12,
+          scrollTrigger: { trigger: 'footer', start: 'top 92%' }
+        });
+      }
+
+      /* Reduced-motion: no animations — elements render at natural state */
+    });
+  })();
   </script>
 
 </body>
