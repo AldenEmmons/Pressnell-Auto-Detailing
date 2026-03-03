@@ -520,6 +520,22 @@
 
     .gallery-item:hover img { transform: scale(1.04); }
 
+    .gallery-label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(14,14,18,0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
     .gallery-placeholder {
       width: 100%;
       height: 100%;
@@ -1063,10 +1079,22 @@
           <source src="timeline 4 hero.mov" type="video/quicktime" />
         </video>
       </div>
-      <div class="gallery-item reveal"><div class="gallery-placeholder"><span>Photo</span></div></div>
-      <div class="gallery-item reveal"><div class="gallery-placeholder"><span>Photo</span></div></div>
-      <div class="gallery-item reveal"><div class="gallery-placeholder"><span>Photo</span></div></div>
-      <div class="gallery-item reveal"><div class="gallery-placeholder"><span>Photo</span></div></div>
+      <div class="gallery-item reveal">
+        <img src="images/ba-rear-before.jpg" alt="Before detailing — rear view" />
+        <span class="gallery-label">Before</span>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="images/ba-rear-after.png" alt="After detailing — rear view" />
+        <span class="gallery-label">After</span>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="images/ba-34-before.png" alt="Before detailing — 3/4 view" />
+        <span class="gallery-label">Before</span>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="images/ba-34-after.png" alt="After detailing — 3/4 view" />
+        <span class="gallery-label">After</span>
+      </div>
     </div>
   </section>
 
