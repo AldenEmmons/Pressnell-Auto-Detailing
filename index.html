@@ -1142,7 +1142,7 @@
         </div>
         <div>
           <div class="contact-detail-label">Email</div>
-          <div class="contact-detail-value"><a href="mailto:aldenemmons6@gmail.com">aldenemmons6@gmail.com</a></div>
+          <div class="contact-detail-value"><a href="mailto:PressnellAutomotive@gmail.com">PressnellAutomotive@gmail.com</a></div>
         </div>
         <div>
           <div class="contact-detail-label">Location</div>
@@ -1155,29 +1155,29 @@
       </div>
     </div>
 
-    <div class="contact-form-wrap reveal">
+    <form class="contact-form-wrap reveal" action="https://formspree.io/f/xojkarav" method="POST">
       <h3>Free Estimate Request</h3>
       <div class="form-row">
         <div class="form-group">
           <label>First Name</label>
-          <input type="text" placeholder="John" />
+          <input type="text" name="first_name" placeholder="John" />
         </div>
         <div class="form-group">
           <label>Last Name</label>
-          <input type="text" placeholder="Smith" />
+          <input type="text" name="last_name" placeholder="Smith" />
         </div>
       </div>
       <div class="form-group">
         <label>Phone</label>
-        <input type="tel" placeholder="(615) 000-0000" />
+        <input type="tel" name="phone" placeholder="(615) 000-0000" />
       </div>
       <div class="form-group">
         <label>Email</label>
-        <input type="email" placeholder="your@email.com" />
+        <input type="email" name="email" placeholder="your@email.com" />
       </div>
       <div class="form-group">
         <label>Service</label>
-        <select>
+        <select name="service">
           <option value="" disabled selected>Select a service</option>
           <option>Full Interior &amp; Exterior Detail</option>
           <option>Hand Wash &amp; Subscription</option>
@@ -1188,12 +1188,12 @@
       </div>
       <div class="form-group">
         <label>Details</label>
-        <textarea placeholder="Tell us about your vehicle..."></textarea>
+        <textarea name="details" placeholder="Tell us about your vehicle..."></textarea>
       </div>
-      <button class="form-submit" onclick="alert('Thanks! We\'ll be in touch shortly.\nOr call/text us at 615-591-2953.')">
+      <button type="submit" class="form-submit">
         Submit Request
       </button>
-    </div>
+    </form>
   </section>
 
   <!-- FOOTER -->
