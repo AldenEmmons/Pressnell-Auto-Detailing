@@ -364,12 +364,72 @@
       margin-bottom: 16px;
     }
 
+    /* Expandable includes drawer */
+    .service-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 0;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      transition: color 0.2s;
+    }
+
+    .service-toggle:hover { color: var(--black); }
+
+    .service-toggle-icon {
+      width: 18px;
+      height: 18px;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .service-toggle-icon svg {
+      width: 8px;
+      height: 8px;
+      transition: transform 0.35s ease;
+    }
+
+    .service-toggle.open { color: var(--black); }
+    .service-toggle.open .service-toggle-icon {
+      background: var(--black);
+      border-color: var(--black);
+    }
+    .service-toggle.open .service-toggle-icon svg { fill: white; transform: rotate(45deg); }
+
+    .service-drawer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.35s ease,
+                  margin 0.35s ease;
+      opacity: 0;
+      margin-top: 0;
+    }
+
+    .service-drawer.open {
+      max-height: 400px;
+      opacity: 1;
+      margin-top: 20px;
+    }
+
     .service-includes {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px 20px;
-      margin-bottom: 24px;
-      flex: 1;
     }
 
     .service-includes-col h4 {
@@ -409,9 +469,15 @@
       background: var(--red);
     }
 
-    /* single-col variant for add-ons card */
-    .service-includes.single-col {
-      grid-template-columns: 1fr;
+    .service-includes.single-col { grid-template-columns: 1fr; }
+
+    .service-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--light-gray);
     }
 
     .service-link {
@@ -425,7 +491,6 @@
       color: var(--black);
       text-decoration: none;
       transition: color 0.2s;
-      margin-top: auto;
     }
 
     .service-link svg {
