@@ -289,18 +289,53 @@
 
     .section-cta:hover { color: var(--red); border-color: var(--red); }
 
-    /* ── PRICING GRID ── */
-    .pricing-grid {
+    /* Service grid — Porsche model-card style */
+    .services-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
       gap: 2px;
       background: var(--light-gray);
-      margin-bottom: 2px;
     }
 
-    .pricing-card {
+    .service-card {
       background: var(--white);
-      padding: 40px 44px 44px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s;
+    }
+
+    .service-card:hover { box-shadow: 0 0 0 2px var(--black); }
+
+    .service-img {
+      width: 100%;
+      height: 268px;
+      background: linear-gradient(160deg, #1c1c22 0%, #0e0e12 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .service-img svg {
+      width: 52px;
+      height: 52px;
+      fill: rgba(255,255,255,0.07);
+    }
+
+    .service-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .service-card:hover .service-img img { transform: scale(1.04); }
+
+    .service-body {
+      padding: 26px 28px 32px;
+      flex: 1;
       display: flex;
       flex-direction: column;
     }
@@ -311,127 +346,96 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gray);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
-    .pricing-card h3 {
-      font-size: 26px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+    .service-body h3 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
       color: var(--black);
-      margin-bottom: 6px;
-    }
-
-    .pricing-price {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--red);
-      letter-spacing: -0.02em;
       margin-bottom: 4px;
     }
 
-    .pricing-price em {
-      font-size: 12px;
-      font-weight: 500;
-      font-style: normal;
-      color: var(--gray);
-      letter-spacing: 0;
-      display: block;
-      margin-top: 2px;
+    .service-price {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--red);
+      margin-bottom: 16px;
     }
 
-    .pricing-divider {
-      height: 1px;
-      background: var(--light-gray);
-      margin: 28px 0;
-    }
-
-    .pricing-cols {
+    .service-includes {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 16px 20px;
+      margin-bottom: 24px;
       flex: 1;
-      margin-bottom: 36px;
     }
 
-    .pricing-col h4 {
-      font-size: 10px;
+    .service-includes-col h4 {
+      font-size: 9px;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--black);
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
-    .pricing-col ul {
+    .service-includes-col ul {
       list-style: none;
       padding: 0;
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 7px;
     }
 
-    .pricing-col ul li {
-      font-size: 13px;
+    .service-includes-col ul li {
+      font-size: 11px;
       font-weight: 400;
       color: var(--gray);
-      padding-left: 14px;
+      padding-left: 12px;
       position: relative;
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
-    .pricing-col ul li::before {
+    .service-includes-col ul li::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 7px;
+      top: 6px;
       width: 5px;
       height: 1px;
       background: var(--red);
     }
 
-    /* Add-ons row */
-    .addons-section {
-      background: var(--black);
-      padding: 40px 44px;
+    /* single-col variant for add-ons card */
+    .service-includes.single-col {
+      grid-template-columns: 1fr;
     }
 
-    .addons-label {
-      font-size: 10px;
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 24px;
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.2s;
+      margin-top: auto;
     }
 
-    .addons-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
+    .service-link svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s;
     }
 
-    .addon-item {
-      background: #18181e;
-      padding: 24px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .addon-item-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--off-white);
-      line-height: 1.3;
-    }
-
-    .addon-item-price {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--red);
-    }
+    .service-link:hover { color: var(--red); }
+    .service-card:hover .service-link svg { transform: translateX(4px); }
 
     /* ── FEATURE SPLIT ── */
     .feature {
@@ -914,11 +918,8 @@
 
       .services { padding: 72px 24px; }
       .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .pricing-card { padding: 32px 24px 36px; }
-      .pricing-cols { grid-template-columns: 1fr; gap: 24px; }
-      .addons-section { padding: 32px 24px; }
-      .addons-grid { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .service-includes { grid-template-columns: 1fr; }
 
       .feature { grid-template-columns: 1fr; }
       .feature-img { min-height: 320px; }
@@ -1018,93 +1019,134 @@
       <a href="#contact" class="section-cta">Book a Service &rarr;</a>
     </div>
 
-    <div class="pricing-grid">
+    <div class="services-grid">
 
-      <div class="pricing-card reveal">
-        <div class="service-tag">Interior + Exterior</div>
-        <h3>Minimum Package</h3>
-        <div class="pricing-price">$95 &ndash; $145 <em>based on vehicle size</em></div>
-        <div class="pricing-divider"></div>
-        <div class="pricing-cols">
-          <div class="pricing-col">
-            <h4>Exterior</h4>
-            <ul>
-              <li>Hand wash and dry</li>
-              <li>Wheel clean</li>
-              <li>Pressure wash wheel wells</li>
-              <li>Door jambs wiped down</li>
-            </ul>
-          </div>
-          <div class="pricing-col">
-            <h4>Interior</h4>
-            <ul>
-              <li>Floorboard vacuum</li>
-              <li>Light detail of interior surfaces</li>
-              <li>Windows cleaned</li>
-            </ul>
-          </div>
+      <div class="service-card reveal">
+        <div class="service-img">
+          <img src="svc-full-detail.jpg" alt="Minimum Package" />
         </div>
-        <a href="#contact" class="btn-red">Book Now</a>
+        <div class="service-body">
+          <div class="service-tag">Interior + Exterior</div>
+          <h3>Minimum Package</h3>
+          <div class="service-price">$95 &ndash; $145</div>
+          <div class="service-includes">
+            <div class="service-includes-col">
+              <h4>Exterior</h4>
+              <ul>
+                <li>Hand wash and dry</li>
+                <li>Wheel clean</li>
+                <li>Pressure wash wheel wells</li>
+                <li>Door jambs wiped down</li>
+              </ul>
+            </div>
+            <div class="service-includes-col">
+              <h4>Interior</h4>
+              <ul>
+                <li>Floorboard vacuum</li>
+                <li>Light detail of interior surfaces</li>
+                <li>Windows cleaned</li>
+              </ul>
+            </div>
+          </div>
+          <a href="#contact" class="service-link">
+            Book Now
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
+          </a>
+        </div>
       </div>
 
-      <div class="pricing-card reveal">
-        <div class="service-tag">Most Popular</div>
-        <h3>Full Package</h3>
-        <div class="pricing-price">$200 &ndash; $300 <em>small to large vehicle</em></div>
-        <div class="pricing-divider"></div>
-        <div class="pricing-cols">
-          <div class="pricing-col">
-            <h4>Exterior</h4>
-            <ul>
-              <li>Deep clean wheels with wheel cleaner</li>
-              <li>Pressure wash wheel wells</li>
-              <li>Degrease and clean exhaust tips</li>
-              <li>Clean and brush front grill and sub grill</li>
-              <li>Brush out around emblems</li>
-              <li>Hand wash and dry</li>
-            </ul>
-          </div>
-          <div class="pricing-col">
-            <h4>Interior</h4>
-            <ul>
-              <li>Blow out interior with compressed air</li>
-              <li>Thorough vacuum</li>
-              <li>Deep clean all seating surfaces and armrests</li>
-              <li>Scrub, clean, and dress all hard plastics</li>
-              <li>Spot clean headliner and visors if needed</li>
-              <li>Thorough glass cleaning inside and out including sunroof</li>
-              <li>Wipe down nav screen and instrument cluster</li>
-              <li>Brush out cup holders and air vents</li>
-            </ul>
-          </div>
+      <div class="service-card reveal">
+        <div class="service-img">
+          <img src="svc-hand-wash.jpg" alt="Full Package" />
         </div>
-        <a href="#contact" class="btn-red">Book Now</a>
+        <div class="service-body">
+          <div class="service-tag">Most Popular</div>
+          <h3>Full Package</h3>
+          <div class="service-price">$200 &ndash; $300</div>
+          <div class="service-includes">
+            <div class="service-includes-col">
+              <h4>Exterior</h4>
+              <ul>
+                <li>Deep clean wheels</li>
+                <li>Pressure wash wheel wells</li>
+                <li>Degrease exhaust tips</li>
+                <li>Clean and brush front grill</li>
+                <li>Brush out around emblems</li>
+                <li>Hand wash and dry</li>
+              </ul>
+            </div>
+            <div class="service-includes-col">
+              <h4>Interior</h4>
+              <ul>
+                <li>Blow out with compressed air</li>
+                <li>Thorough vacuum</li>
+                <li>Deep clean all seating and armrests</li>
+                <li>Scrub and dress all hard plastics</li>
+                <li>Spot clean headliner and visors</li>
+                <li>Full glass cleaning inside and out</li>
+                <li>Wipe nav screen and instrument cluster</li>
+                <li>Brush cup holders and air vents</li>
+              </ul>
+            </div>
+          </div>
+          <a href="#contact" class="service-link">
+            Book Now
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-img">
+          <img src="svc-interior.jpg" alt="Optional Add-ons" />
+        </div>
+        <div class="service-body">
+          <div class="service-tag">Customize Your Service</div>
+          <h3>Optional Add-ons</h3>
+          <div class="service-price">Starting at $35</div>
+          <div class="service-includes single-col">
+            <div class="service-includes-col">
+              <ul>
+                <li>Steam cleaning carpets and surfaces &mdash; $45</li>
+                <li>Carpet shampoo &mdash; $35</li>
+                <li>Clay bar and wax &mdash; $45&ndash;$65</li>
+                <li>Full body polish with wax &mdash; $175&ndash;$350</li>
+              </ul>
+            </div>
+          </div>
+          <a href="#contact" class="service-link">
+            Get a Quote
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-img">
+          <img src="svc-ceramic.jpg" alt="Free Estimate" />
+        </div>
+        <div class="service-body">
+          <div class="service-tag">Always Free</div>
+          <h3>Free Estimate</h3>
+          <div class="service-price">No Obligation</div>
+          <div class="service-includes single-col">
+            <div class="service-includes-col">
+              <ul>
+                <li>Mobile service at your location</li>
+                <li>Pricing based on vehicle size and condition</li>
+                <li>Package recommendations included</li>
+                <li>Call or text to get started</li>
+              </ul>
+            </div>
+          </div>
+          <a href="#contact" class="service-link">
+            Contact Us
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></svg>
+          </a>
+        </div>
       </div>
 
     </div>
-
-    <div class="addons-section reveal">
-      <div class="addons-label">Optional Add-ons</div>
-      <div class="addons-grid">
-        <div class="addon-item">
-          <div class="addon-item-name">Steam Cleaning Carpets and Surfaces</div>
-          <div class="addon-item-price">$45</div>
-        </div>
-        <div class="addon-item">
-          <div class="addon-item-name">Carpet Shampoo</div>
-          <div class="addon-item-price">$35</div>
-        </div>
-        <div class="addon-item">
-          <div class="addon-item-name">Clay Bar and Wax</div>
-          <div class="addon-item-price">$45 &ndash; $65</div>
-        </div>
-        <div class="addon-item">
-          <div class="addon-item-name">Full Body Polish with Wax</div>
-          <div class="addon-item-price">$175 &ndash; $350</div>
-        </div>
-      </div>
-    </div>
-
   </section>
 
   <!-- FEATURE SPLIT -->
@@ -1331,15 +1373,11 @@
           scrollTrigger: { trigger: svcHeader, start: 'top 82%' }
         });
 
-        /* ── PRICING CARDS — staggered clip wipe from bottom ── */
-        gsap.from('.pricing-card', {
+        /* ── SERVICE CARDS — staggered clip wipe from bottom ── */
+        gsap.from('.service-card', {
           clipPath: 'inset(0 0 100% 0)',
-          duration: 1.05, ease: EXPO, stagger: 0.12,
-          scrollTrigger: { trigger: '.pricing-grid', start: 'top 82%' }
-        });
-        gsap.from('.addons-section', {
-          opacity: 0, y: 20, duration: 0.75, ease: POWER,
-          scrollTrigger: { trigger: '.addons-section', start: 'top 88%' }
+          duration: 1.05, ease: EXPO, stagger: 0.1,
+          scrollTrigger: { trigger: '.services-grid', start: 'top 82%' }
         });
 
         /* ── FEATURE — video parallax + panel text stagger ── */
